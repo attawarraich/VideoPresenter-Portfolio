@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Atta Ur Rehman Warraich — Video Content Presenter</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root { --bg:#0E0E0E; --surface:#161616; --border:#272727; --text:#EFEFEF; --muted:#888; --accent:#C8F135; --red:#F13535; --white:#fff; }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.7;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:20px 48px;background:rgba(14,14,14,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+  .nav-logo{font-family:'DM Serif Display',serif;font-size:18px;}
+  .nav-logo span{color:var(--accent);}
+  .nav-links{display:flex;gap:32px;}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;transition:color .2s;}
+  .nav-links a:hover{color:var(--accent);}
+  .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 48px 80px;position:relative;overflow:hidden;}
+  .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 80% 30%,rgba(200,241,53,.07) 0%,transparent 70%);pointer-events:none;}
+  .hero-tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(200,241,53,.3);padding:6px 14px;border-radius:2px;margin-bottom:32px;}
+  .hero h1{font-family:'DM Serif Display',serif;font-size:clamp(52px,8vw,96px);line-height:1;font-weight:400;max-width:900px;}
+  .hero h1 em{font-style:italic;color:var(--accent);}
+  .hero-sub{margin-top:32px;max-width:520px;color:var(--muted);font-size:16px;line-height:1.75;}
+  .hero-stats{display:flex;gap:48px;margin-top:56px;padding-top:40px;border-top:1px solid var(--border);}
+  .stat-num{font-family:'DM Serif Display',serif;font-size:40px;color:var(--white);}
+  .stat-num span{color:var(--accent);}
+  .stat-label{font-size:12px;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:.08em;}
+  .scroll-hint{position:absolute;bottom:32px;right:48px;font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;display:flex;align-items:center;gap:10px;}
+  .scroll-hint::before{content:'';display:block;width:40px;height:1px;background:var(--muted);}
+  section{padding:100px 48px;}
+  .section-label{font-size:11px;font-weight:600;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;margin-bottom:16px;}
+  .section-title{font-family:'DM Serif Display',serif;font-size:clamp(32px,4vw,52px);line-height:1.1;margin-bottom:48px;}
+  hr.divider{border:none;border-top:1px solid var(--border);}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+  .about-text p{color:var(--muted);margin-bottom:16px;font-size:16px;line-height:1.8;}
+  .about-text p strong{color:var(--text);}
+  .about-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px;}
+  .chip{font-size:12px;font-weight:500;padding:7px 16px;border-radius:2px;border:1px solid var(--border);color:var(--muted);}
+  .chip.h{border-color:var(--accent);color:var(--accent);background:rgba(200,241,53,.05);}
+  .certs-list{list-style:none;}
+  .certs-list li{padding:16px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+  .certs-list li:first-child{border-top:1px solid var(--border);}
+  .cert-name{font-size:14px;font-weight:500;}
+  .cert-org{font-size:12px;color:var(--muted);}
+  .tag{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:2px;background:rgba(255,255,255,.05);color:var(--muted);}
+  .case-studies{background:var(--surface);}
+  .case-card{border:1px solid var(--border);border-radius:4px;margin-bottom:8px;overflow:hidden;transition:border-color .3s;}
+  .case-card:hover{border-color:rgba(200,241,53,.3);}
+  .case-header{display:flex;justify-content:space-between;align-items:center;padding:32px 40px;cursor:pointer;user-select:none;transition:background .2s;}
+  .case-header:hover{background:rgba(255,255,255,.02);}
+  .case-num{font-family:'DM Serif Display',serif;font-size:13px;color:var(--accent);margin-bottom:8px;}
+  .case-title{font-size:22px;font-weight:500;}
+  .case-meta{font-size:12px;color:var(--muted);margin-top:6px;}
+  .case-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
+  .arrow{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:50%;font-size:24px;color:var(--muted);transition:all .3s;flex-shrink:0;}
+  .case-body{display:none;padding:32px 40px 40px;border-top:1px solid var(--border);}
+  .case-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
+  .blabel{font-size:10px;font-weight:700;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+  .blabel::after{content:'';flex:1;height:1px;background:var(--border);}
+  .case-block p{color:var(--muted);font-size:14px;line-height:1.8;}
+  .case-block ul{list-style:none;}
+  .case-block ul li{color:var(--muted);font-size:14px;padding:4px 0 4px 16px;position:relative;}
+  .case-block ul li::before{content:'→';position:absolute;left:0;color:var(--accent);font-size:12px;}
+  .result-box{margin-top:32px;padding:24px 32px;background:rgba(200,241,53,.04);border:1px solid rgba(200,241,53,.2);border-radius:4px;display:flex;gap:48px;flex-wrap:wrap;}
+  .rnum{font-family:'DM Serif Display',serif;font-size:36px;color:var(--accent);}
+  .rlabel{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:4px;}
+  .script-box{margin-top:32px;background:rgba(0,0,0,.4);border-left:3px solid var(--accent);padding:24px 28px;border-radius:0 4px 4px 0;}
+  .slabel{font-size:10px;font-weight:700;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;margin-bottom:12px;}
+  .script-box p{font-size:14px;color:var(--text);line-height:1.8;font-style:italic;}
+  .beat{display:inline-block;font-size:10px;font-style:normal;font-weight:700;color:var(--red);letter-spacing:.1em;text-transform:uppercase;margin-right:6px;}
+  .btn-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;}
+  .vbtn{display:inline-flex;align-items:center;gap:10px;padding:12px 24px;border:1px solid var(--border);border-radius:3px;color:var(--text);text-decoration:none;font-size:13px;font-weight:500;transition:all .2s;}
+  .vbtn:hover{border-color:var(--accent);color:var(--accent);}
+  .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+  .skill-card{padding:36px 32px;background:var(--surface);border:1px solid var(--border);transition:all .2s;}
+  .skill-card:hover{background:rgba(200,241,53,.03);border-color:rgba(200,241,53,.2);}
+  .skill-icon{font-size:28px;margin-bottom:16px;}
+  .skill-name{font-size:16px;font-weight:600;margin-bottom:8px;}
+  .skill-desc{font-size:13px;color:var(--muted);line-height:1.7;}
+  .contact{text-align:center;padding:120px 48px;}
+  .contact .section-title{margin-bottom:16px;}
+  .csub{color:var(--muted);font-size:17px;margin-bottom:56px;max-width:480px;margin-left:auto;margin-right:auto;}
+  .clinks{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;}
+  .clink{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;border:1px solid var(--border);border-radius:3px;color:var(--text);text-decoration:none;font-size:13px;font-weight:500;transition:all .2s;}
+  .clink:hover{border-color:var(--accent);color:var(--accent);}
+  .clink.primary{background:var(--accent);color:#000;border-color:var(--accent);}
+  .clink.primary:hover{background:#b8e020;}
+  footer{padding:32px 48px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
+  footer p{font-size:12px;color:var(--muted);}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+  .hero-tag{animation:fadeUp .7s ease .1s both;}
+  .hero h1{animation:fadeUp .7s ease .25s both;}
+  .hero-sub{animation:fadeUp .7s ease .4s both;}
+  .hero-stats{animation:fadeUp .7s ease .55s both;}
+  @media(max-width:768px){
+    nav{padding:16px 24px;} .nav-links{display:none;}
+    section,.hero{padding:80px 24px;} .hero{padding-bottom:60px;}
+    .about-grid,.case-grid,.skills-grid{grid-template-columns:1fr;}
+    .hero-stats{flex-wrap:wrap;gap:24px;}
+    footer{flex-direction:column;text-align:center;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Atta<span>.</span></div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#work">Case Studies</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-tag">Video Content Presenter — 2025</div>
+  <h1>I don't just read scripts.<br><em>I make them</em><br>come alive.</h1>
+  <p class="hero-sub">On-camera video presenter with 2+ years of consistent daily delivery — fluent English, natural confidence, and a proven ability to present credibly on unfamiliar topics from structured briefings.</p>
+  <div class="hero-stats">
+    <div><div class="stat-num">40<span>K+</span></div><div class="stat-label">Views in 10 Days</div></div>
+    <div><div class="stat-num">100<span>+</span></div><div class="stat-label">Videos Presented</div></div>
+    <div><div class="stat-num">2<span>+</span></div><div class="stat-label">Years On-Camera</div></div>
+    <div><div class="stat-num">5<span>x</span></div><div class="stat-label">Certifications</div></div>
+  </div>
+  <div class="scroll-hint">Scroll to explore</div>
+</section>
+
+<hr class="divider"/>
+
+<section id="about">
+  <div class="section-label">Who I Am</div>
+  <div class="section-title">Presenter. Storyteller.<br>On-Camera Talent.</div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm <strong>Atta Ur Rehman Warraich</strong> — an on-camera video presenter based in Lahore with 2+ years of consistent, high-volume short-form video delivery in fluent English.</p>
+      <p>I've presented 100+ videos independently over 2+ years — managing the full workflow from topic briefing through recording and delivery, without any production support. I know what it takes to show up consistently and perform.</p>
+      <p>My real estate work proved something important: <strong>I can present with authority on complex topics and make them feel simple, relatable, and trustworthy for a general audience.</strong> 7 videos, 40,000+ views. That's the skill that matters most in a structured presenter role.</p>
+      <div class="about-chips">
+        <span class="chip h">On-Camera Delivery</span>
+        <span class="chip h">Fluent English</span>
+        <span class="chip h">Script Internalisation</span>
+        <span class="chip">High-Volume Output</span>
+        <span class="chip">Hook Awareness</span>
+        <span class="chip">Daily Consistency</span>
+        <span class="chip">Briefing to Camera</span>
+        <span class="chip">Audience Engagement</span>
+      </div>
+    </div>
+    <div>
+      <ul class="certs-list">
+        <li><div><div class="cert-name">Content Marketing Certification</div><div class="cert-org">HubSpot Academy</div></div><div class="tag">Certified</div></li>
+        <li><div><div class="cert-name">Fundamentals of Digital Marketing</div><div class="cert-org">Google Digital Garage</div></div><div class="tag">Certified</div></li>
+        <li><div><div class="cert-name">Google Ads — Search</div><div class="cert-org">Google</div></div><div class="tag">Certified</div></li>
+        <li><div><div class="cert-name">Google Ads — Display</div><div class="cert-org">Google</div></div><div class="tag">Certified</div></li>
+        <li><div><div class="cert-name">Google Ads — Measurement</div><div class="cert-org">Google</div></div><div class="tag">Certified</div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<section id="work" class="case-studies">
+  <div class="section-label">On-Camera Work</div>
+  <div class="section-title">Presenter Showcase</div>
+
+  <!-- CASE 1 -->
+  <div class="case-card">
+    <div class="case-header" onclick="toggle('c1')">
+      <div>
+        <div class="case-num">01 / Real Estate</div>
+        <div class="case-title">Muscle Realtors — On-Camera Presenter</div>
+        <div class="case-meta">Lahore, Pakistan &nbsp;·&nbsp; 2024 &nbsp;·&nbsp; 7 Videos, 40K+ Views</div>
+        <div class="case-tags">
+          <span class="tag">On-Camera Presenting</span><span class="tag">Scripted Delivery</span><span class="tag">Educational Content</span><span class="tag">TikTok</span>
+        </div>
+      </div>
+      <div class="arrow" id="a-c1">+</div>
+    </div>
+    <div class="case-body" id="c1">
+      <div class="case-grid">
+        <div class="case-block"><div class="blabel">The Challenge</div><p>Launch a brand new real estate startup's TikTok presence from zero — no existing audience, no brand voice, and a category where most content feels overly salesy and fails to build trust.</p></div>
+        <div class="case-block"><div class="blabel">The Presenting Approach</div><p>Used my understanding of the real estate space to present content that felt knowledgeable and trustworthy. Focused on making property concepts feel simple and accessible to a first-time buyer audience.</p></div>
+        <div class="case-block"><div class="blabel">What I Delivered</div><ul><li>7 fully presented short-form videos as sole on-camera talent</li><li>Clear, confident delivery that built credibility for a new brand</li><li>Consistent brand voice maintained across all videos</li><li>Full production handled independently — briefing to delivery</li></ul></div>
+        <div class="case-block"><div class="blabel">Key Proof Point</div><p>40,000+ views generated in 10 days — driven by presentation quality, hook structure, and the ability to make complex property information feel engaging and easy to understand.</p></div>
+      </div>
+      <div class="result-box">
+        <div><div class="rnum">40,000+</div><div class="rlabel">Cumulative Views</div></div>
+        <div><div class="rnum">7</div><div class="rlabel">Videos Presented</div></div>
+        <div><div class="rnum">10</div><div class="rlabel">Days to Achieve</div></div>
+      </div>
+      <div class="script-box">
+        <div class="slabel">Sample Hook Structure Used</div>
+        <p>
+          <span class="beat">[Hook]</span>"You're about to buy property in Lahore — stop. Watch this first."<br>
+          <span class="beat">[Problem]</span>"Most first-time buyers lose 20–30% of their budget on fees they didn't know existed."<br>
+          <span class="beat">[Insight]</span>"Here are 3 things your agent won't tell you..."<br>
+          <span class="beat">[CTA]</span>"Follow for more honest real estate advice."
+        </p>
+      </div>
+      <div class="btn-row">
+        <a href="https://www.tiktok.com/@musclerealtors" target="_blank" class="vbtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+          View @musclerealtors on TikTok
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CASE 2 -->
+  <div class="case-card">
+    <div class="case-header" onclick="toggle('c2')">
+      <div>
+        <div class="case-num">02 / Fitness & Lifestyle</div>
+        <div class="case-title">Atta Warrior — 100+ Videos Over 2+ Years</div>
+        <div class="case-meta">English-Language Audience &nbsp;·&nbsp; 2023–Present &nbsp;·&nbsp; 100+ Videos</div>
+        <div class="case-tags">
+          <span class="tag">Daily Presenter</span><span class="tag">100+ Videos</span><span class="tag">TikTok</span><span class="tag">YouTube</span>
+        </div>
+      </div>
+      <div class="arrow" id="a-c2">+</div>
+    </div>
+    <div class="case-body" id="c2">
+      <div class="case-grid">
+        <div class="case-block"><div class="blabel">What This Proves</div><p>Sustained, independent on-camera output over 2+ years. No production team, no external accountability — consistent delivery built purely on discipline and self-motivation.</p></div>
+        <div class="case-block"><div class="blabel">Presenting Style Developed</div><p>Through 100+ videos I developed a natural, confident delivery style — learning to make scripted content feel spontaneous, maintain energy across multiple takes, and keep audience attention from the first second.</p></div>
+        <div class="case-block"><div class="blabel">Workflow Built</div><ul><li>Self-briefing on topics → internalising content → recording</li><li>Multiple takes per video to nail delivery quality</li><li>File review and delivery — end to end independently</li><li>Consistent output maintained across 2+ years</li></ul></div>
+        <div class="case-block"><div class="blabel">Why It Matters</div><p>Most presenters can perform occasionally. 100+ videos over 2+ years shows I can show up, perform at a high level, and deliver volume — consistently, without being managed.</p></div>
+      </div>
+      <div class="result-box">
+        <div><div class="rnum">100+</div><div class="rlabel">Videos Presented</div></div>
+        <div><div class="rnum">2+</div><div class="rlabel">Years Consistent Output</div></div>
+        <div><div class="rnum">5x</div><div class="rlabel">Per Week Cadence</div></div>
+      </div>
+      <div class="script-box">
+        <div class="slabel">Content Pillar Framework</div>
+        <p>
+          <span class="beat">[Educate]</span>"3 things nobody tells you about building muscle after 25..."<br>
+          <span class="beat">[Motivate]</span>"You're not lazy. Your environment is wrong. Here's how to fix it."<br>
+          <span class="beat">[Results]</span>"30 days. No gym. Here's what actually happened."
+        </p>
+      </div>
+      <div class="btn-row">
+        <a href="https://youtube.com/@attawarrior?si=v4b4wJNvRiypYacD" target="_blank" class="vbtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 00-2.12-2.14C19.54 3.5 12 3.5 12 3.5s-7.54 0-9.38.55A3.02 3.02 0 00.5 6.19 31.6 31.6 0 000 12a31.6 31.6 0 00.5 5.81 3.02 3.02 0 002.12 2.14C4.46 20.5 12 20.5 12 20.5s7.54 0 9.38-.55a3.02 3.02 0 002.12-2.14A31.6 31.6 0 0024 12a31.6 31.6 0 00-.5-5.81zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
+          View on YouTube
+        </a>
+        <a href="https://www.tiktok.com/@atta_warrior" target="_blank" class="vbtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+          View on TikTok
+        </a>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<hr class="divider"/>
+
+<section id="skills">
+  <div class="section-label">Capabilities</div>
+  <div class="section-title">What I Bring to a Team</div>
+  <div class="skills-grid">
+    <div class="skill-card"><div class="skill-icon">🎬</div><div class="skill-name">On-Camera Delivery</div><div class="skill-desc">Natural, confident on-camera presence developed over 2+ years and 100+ videos. Scripted content delivered with energy and authenticity — never robotic or read.</div></div>
+    <div class="skill-card"><div class="skill-icon">🗣️</div><div class="skill-name">Fluent English Presentation</div><div class="skill-desc">Clear, neutral, fluent English delivery built for digital audiences. Strong pacing, emphasis, and tonality that keeps viewers watching past the first few seconds.</div></div>
+    <div class="skill-card"><div class="skill-icon">⚡</div><div class="skill-name">Subject Matter Confidence</div><div class="skill-desc">Ability to present complex topics with authority and make them feel simple and accessible — whether property investment, fitness science, or educational content.</div></div>
+    <div class="skill-card"><div class="skill-icon">📅</div><div class="skill-name">High-Volume Output</div><div class="skill-desc">100+ videos produced over 2+ years. I understand the discipline, stamina, and consistency a structured daily presenter role demands.</div></div>
+    <div class="skill-card"><div class="skill-icon">🎯</div><div class="skill-name">Hook & Retention Awareness</div><div class="skill-desc">Deep understanding of what keeps audiences watching — opening energy, pacing variation, and how to make educational content feel engaging rather than dry.</div></div>
+    <div class="skill-card"><div class="skill-icon">📱</div><div class="skill-name">Mobile Recording Setup</div><div class="skill-desc">Experienced in self-managed home recording — lighting, framing, audio, and file delivery. Ready to operate in Phase 1 from day one without hand-holding.</div></div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<section id="contact" class="contact">
+  <div class="section-label">Get In Touch</div>
+  <div class="section-title">Let's Work Together</div>
+  <p class="csub">Available for part-time remote work Monday to Friday. Reach out via phone or email.</p>
+  <div class="clinks">
+    <a href="tel:03096207684" class="clink primary">📞 03096207684</a>
+    <a href="mailto:management.attawarraich@gmail.com" class="clink">✉ management.attawarraich@gmail.com</a>
+    <a href="https://youtube.com/@attawarrior?si=v4b4wJNvRiypYacD" target="_blank" class="clink">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 00-2.12-2.14C19.54 3.5 12 3.5 12 3.5s-7.54 0-9.38.55A3.02 3.02 0 00.5 6.19 31.6 31.6 0 000 12a31.6 31.6 0 00.5 5.81 3.02 3.02 0 002.12 2.14C4.46 20.5 12 20.5 12 20.5s7.54 0 9.38-.55a3.02 3.02 0 002.12-2.14A31.6 31.6 0 0024 12a31.6 31.6 0 00-.5-5.81zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
+      YouTube: @attawarrior
+    </a>
+    <a href="https://www.tiktok.com/@atta_warrior" target="_blank" class="clink">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+      TikTok: @atta_warrior
+    </a>
+    <a href="https://www.tiktok.com/@musclerealtors" target="_blank" class="clink">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+      TikTok: @musclerealtors
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Atta Ur Rehman Warraich &nbsp;·&nbsp; Video Content Presenter, Lahore</p>
+  <p>03096207684 &nbsp;·&nbsp; management.attawarraich@gmail.com</p>
+</footer>
+
+<script>
+function toggle(id) {
+  var body = document.getElementById(id);
+  var arrow = document.getElementById('a-' + id);
+  if (body.style.display === 'block') {
+    body.style.display = 'none';
+    arrow.textContent = '+';
+  } else {
+    body.style.display = 'block';
+    arrow.textContent = '×';
+  }
+}
+</script>
+</body>
+</html>
